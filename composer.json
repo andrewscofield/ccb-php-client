@@ -1,0 +1,28 @@
+{
+    "name": "compasshb/ccb-php-client",
+    "description": "A simple PHP client interface for the Community Church Builder (CCB) HTTP API.",
+    "keywords": ["ccb", "church community builder", "php", "compasshb", "compass hb"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Evan Winslow"
+        },
+        {
+            "name": "Brad Smith",
+            "email": "brad@compasshb.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.0"
+    },
+    "autoload": {
+        "psr-4": { "CompassHB\\Ccb\\": "src/" }
+    },
+    "autoload-dev": {
+        "psr-4": { "CompassHB\\Ccb\\Tests\\": "tests/" }
+    },
+    "minimum-stability": "dev"
+}
