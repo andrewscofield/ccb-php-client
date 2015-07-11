@@ -6,5 +6,5 @@ A simple PHP client interface for the Community Church Builder (CCB) HTTP API.
 
 ## Usage
 ```
-composer require compasshb/cbc-php-client
+composer require compasshb/ccb-php-client
 ```
