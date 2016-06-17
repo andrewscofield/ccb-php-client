@@ -45,7 +45,8 @@ class Api
 
         $args['query']['srv'] = $serviceName;
 
-        $request = $this->client->createRequest($httpMethod, $url, $args);
+        return new Response($body);
+    }
 
     public function get($serviceName, array $parameters = []){
       $args["query"] = $parameters;
