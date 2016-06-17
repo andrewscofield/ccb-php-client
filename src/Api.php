@@ -47,6 +47,13 @@ class Api
 
         $request = $this->client->createRequest($httpMethod, $url, $args);
 
-        return $this->client->send($request)->xml();
+    public function get($serviceName, array $parameters = []){
+      $args["query"] = $parameters;
+      return $this->srv("GET", $serviceName, $args);
+    }
+
+    public function post($serviceName, array $parameters = []){
+      $args["query"] = $parameters;
+      return $this->srv("POST", $serviceName, $args);
     }
 }
