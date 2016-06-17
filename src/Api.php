@@ -1,4 +1,5 @@
-<?php namespace CompassHB\Ccb;
+<?php
+namespace CompassHB\Ccb;
 
 use GuzzleHttp\Client;
 use SimpleXMLElement;
@@ -11,14 +12,14 @@ use SimpleXMLElement;
  */
 class Api
 {
-    /** @var string */
     private $church;
-
-    /** @var Client */
     private $client;
 
-    public function __construct($church, Client $client)
+    public function __construct($church, $auth)
     {
+
+        $client = new Client(["auth" => $auth]);
+
         $this->church = $church;
         $this->client = $client;
     }
@@ -44,6 +45,8 @@ class Api
         }
 
         $args['query']['srv'] = $serviceName;
+        $request = $this->client->request($httpMethod, $url, $args);
+        $body = (string) $request->getBody();
 
         return new Response($body);
     }
