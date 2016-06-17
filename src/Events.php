@@ -1,17 +1,8 @@
 <?php namespace CompassHB\Ccb;
 
-class Events
-{
-    /** @var Client */
-    private $client;
+use CompassHB\Ccb\Ccb;
 
-    /**
-     * @param Client $client
-     */
-    public function __construct(Client $client)
-    {
-        $this->client = $client;
-    }
+class Events{
 
     /**
      * @param int    $id
@@ -20,13 +11,12 @@ class Events
      *
      * @return ...
      */
-    public function addIndividualToEvent($id, $event_id, $status)
-    {
-        return $this->client->srv('add_individual_to_event', [
+    public function addIndividualToEvent($id, $event_id, $status){
+        return Ccb::$api->post('add_individual_to_event', [
             'id' => $id,
             'event_id' => $event_id,
             'status' => $status,
-        ], 'POST');
+        ]);
     }
 
     /**
@@ -37,7 +27,7 @@ class Events
      */
     public function attendanceProfile($id, DateTime $occurrence)
     {
-        return $this->client->srv('attendance_profile', [
+        return Ccb::$api->get('attendance_profile', [
             'id' => $id,
             'occurrence' => $occurrence, // TODO(evan): Convert to correctly-formatted string
         ]);
@@ -60,7 +50,7 @@ class Events
         $options['end_date'] = $end_date; // TODO(evan): Convert date to string
         $options['name'] = $name;
 
-        return $this->client->srv('create_event', $options, 'POST');
+        return Ccb::$api->get('create_event', $options, 'POST');
     }
 
     /**
@@ -72,7 +62,7 @@ class Events
      */
     public function eventProfile($id)
     {
-        return $this->client->srv('event_profile', [
+        return Ccb::$api->get('event_profile', [
             'id' => $id,
         ]);
     }
@@ -88,7 +78,7 @@ class Events
      */
     public function eventProfiles(DateTime $modified_since = null)
     {
-        return $this->client->srv('event_profiles', [
+        return Ccb::$api->get("event_profiles", [
             'modified_since' => $modified_since,
         ]);
     }
