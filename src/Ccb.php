@@ -4,6 +4,7 @@ namespace CompassHB\Ccb;
 use GuzzleHttp\Client;
 use SimpleXMLElement;
 
+use CompassHB\Ccb\Api;
 use CompassHB\Ccb\Events;
 use CompassHB\Ccb\Calendar;
 
@@ -18,7 +19,7 @@ class Ccb{
   private function __construct() { }
 
   public static function init( $church, $auth ) {
-      self::$api = new \CompassHB\Ccb\Api($church, $auth);
+      self::$api = new Api($church, $auth);
   }
 
 
