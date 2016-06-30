@@ -60,11 +60,12 @@ class Events{
      *
      * @return ...
      */
-    public function eventProfile($id)
-    {
-        return Ccb::$api->get('event_profile', [
+    public function eventProfile($id){
+        $event_profile =  Ccb::$api->get('event_profile', [
             'id' => $id,
         ]);
+
+        return $event_profile->responseXML()->response->events->event;
     }
 
     /**
