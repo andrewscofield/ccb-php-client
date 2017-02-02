@@ -51,14 +51,16 @@ class Api
         return new Response($body);
     }
 
-    public function get($serviceName, array $parameters = []){
-      $args["query"] = $parameters;
-      return $this->srv("GET", $serviceName, $args);
+    public function get($serviceName, array $parameters = [])
+    {
+        $args["query"] = $parameters;
+        return $this->srv("GET", $serviceName, $args);
     }
 
-    public function post($serviceName, array $parameters = [], array $formParams = []){
-      $args["query"] = $parameters;
-      $args["form_params"] = $formParams;
-      return $this->srv("POST", $serviceName, $args);
+    public function post($serviceName, array $parameters = [], array $formParams = [])
+    {
+        $args["query"] = $parameters;
+        $args["form_params"] = $formParams;
+        return $this->srv("POST", $serviceName, $args);
     }
 }

@@ -2,7 +2,8 @@
 
 use CompassHB\Ccb\Ccb;
 
-class Events{
+class Events
+{
 
     /**
      * @param int    $id
@@ -11,7 +12,8 @@ class Events{
      *
      * @return ...
      */
-    public function addIndividualToEvent($id, $event_id, $status){
+    public function addIndividualToEvent($id, $event_id, $status)
+    {
         return Ccb::$api->post('add_individual_to_event', [
             'id' => $id,
             'event_id' => $event_id,
@@ -60,7 +62,8 @@ class Events{
      *
      * @return ...
      */
-    public function eventProfile($id){
+    public function eventProfile($id)
+    {
         $event_profile =  Ccb::$api->get('event_profile', [
             'id' => $id,
         ]);

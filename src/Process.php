@@ -2,14 +2,17 @@
 
 use CompassHB\Ccb\Ccb;
 
-class Process{
+class Process
+{
 
     /**
-     * @param int    $id
+     * @param int $id
+     * @param string $status (optional)
      *
-     * @return ...
+     * @return list of individuals in a queue with optional filter for certain status
      */
-    public function queueIndividuals($id, $status='not-started'){
+    public function queueIndividuals($id, $status = 'not-started')
+    {
         $queue_individuals = Ccb::$api->get('queue_individuals', [
             'id' => $id,
             'status' => $status
@@ -17,8 +20,4 @@ class Process{
 
         return $queue_individuals->responseXML()->response->individuals->individual;
     }
-
-
-    
-
 }
