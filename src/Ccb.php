@@ -33,6 +33,26 @@ class Ccb{
     return $return_date->format("Y-m-d");
   }
 
+  public static function lookupDetail($table, $params = array()){
+    $detail = Ccb::$api->get($table."_detail", $params);
+    return $detail->responseXML();
+  }
+
+  public static function lookupInsert($table, $params = array()){
+    $detail = Ccb::$api->get($table."_insert", $params);
+    return $detail->responseXML();
+  }
+
+  public static function lookupList($table, $params = array()){
+    $detail = Ccb::$api->get($table."_list", $params);
+    return $detail->responseXML();
+  }
+
+  public static function lookupUpdate($table, $params = array()){
+    $detail = Ccb::$api->get($table."_update", $params);
+    return $detail->responseXML();
+  }
+
 }
 
 ?>
