@@ -53,6 +53,20 @@ class Ccb{
     return $detail->responseXML();
   }
 
+  /**
+  *
+  * @return array of last run time, daily limit and counter
+  */
+  public static function apiStatus(){
+    $status = Ccb::$api->get("api_status");
+    $response = $status->responseXML()->response;
+    return array(
+      "last_run_date" => (string) $response->last_run_date,
+      "daily_limit" => (string) $response->daily_limit,
+      "counter" => (string) $response->counter
+    );
+  }
+
 }
 
 ?>
