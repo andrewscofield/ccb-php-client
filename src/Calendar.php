@@ -2,7 +2,8 @@
 
 use CompassHB\Ccb\Ccb;
 
-class Calendar{
+class Calendar
+{
 
   /**
    * @param DateTime $date_start
@@ -10,17 +11,18 @@ class Calendar{
    *
    * @return array of public calendar list items
    */
-  public function publicCalendarListing($date_start="2010-01-01", $date_end=NULL){
+    public function publicCalendarListing($date_start = "2010-01-01", $date_end = null)
+    {
 
-    $args["date_start"] = Ccb::format_date($date_start);
+        $args["date_start"] = Ccb::format_date($date_start);
 
-    if(!empty($date_end)){
-      $args["date_end"] = Ccb::format_date($date_end);
+        if (!empty($date_end)) {
+            $args["date_end"] = Ccb::format_date($date_end);
+        }
+
+        $calendar_listing = Ccb::$api->get("public_calendar_listing", $args);
+        return $calendar_listing->responseXML()->response->items->item;
     }
-
-    $calendar_listing = Ccb::$api->get("public_calendar_listing", $args);
-    return $calendar_listing->responseXML()->response->items->item;
-  }
 
 
   /**
@@ -29,20 +31,17 @@ class Calendar{
    *
    * @return array of public calendar list items
    */
-  public function individualCalendarListing($individual_id, $date_start="2010-01-01", $date_end=NULL){
+    public function individualCalendarListing($individual_id, $date_start = "2010-01-01", $date_end = null)
+    {
 
-    $args["id"] = $individual_id;
-    $args["date_start"] = Ccb::format_date($date_start);
+        $args["id"] = $individual_id;
+        $args["date_start"] = Ccb::format_date($date_start);
 
-    if(!empty($date_end)){
-      $args["date_end"] = Ccb::format_date($date_end);
+        if (!empty($date_end)) {
+            $args["date_end"] = Ccb::format_date($date_end);
+        }
+
+        $calendar_listing = Ccb::$api->get("public_calendar_listing", $args);
+        return $calendar_listing->responseXML()->response->items->item;
     }
-
-    $calendar_listing = Ccb::$api->get("public_calendar_listing", $args);
-    return $calendar_listing->responseXML()->response->items->item;
-  }
-
-
-
-
 }
