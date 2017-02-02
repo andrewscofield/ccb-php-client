@@ -40,11 +40,11 @@ class Api
     {
         $url = "https://{$this->church}.ccbchurch.com/api.php";
 
-        if (!isset($args['query'])) {
-            $args['query'] = [];
+        if (!isset($args["query"])) {
+            $args["query"] = [];
         }
 
-        $args['query']['srv'] = $serviceName;
+        $args["query"]["srv"] = $serviceName;
         $request = $this->client->request($httpMethod, $url, $args);
         $body = (string) $request->getBody();
 
@@ -56,8 +56,9 @@ class Api
       return $this->srv("GET", $serviceName, $args);
     }
 
-    public function post($serviceName, array $parameters = []){
+    public function post($serviceName, array $parameters = [], array $formParams = []){
       $args["query"] = $parameters;
+      $args["form_params"] = $formParams;
       return $this->srv("POST", $serviceName, $args);
     }
 }
