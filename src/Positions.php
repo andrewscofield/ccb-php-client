@@ -7,13 +7,16 @@ class Positions
 
     public function all_positions()
     {
-        return Ccb::$api->get('position_list');
+        $positions = Ccb::$api->get('position_list');
+        return $positions->responseXML()->response->positions;
     }
 
-    public function groupPositions($group_id)
+    public function group_positions($group_id)
     {
-        return Ccb::$api->get('group_positions', [
-        'group_positions' => $id,
+        $group_positions = Ccb::$api->get('group_positions', [
+            'id' => intval($group_id),
         ]);
+
+        return $group_positions->responseXML()->response->groups->group->positions;
     }
 }
