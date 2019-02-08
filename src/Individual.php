@@ -27,16 +27,16 @@ class Individual
         );
 
         $updated_individual = Ccb::$api->post("update_individual", $individual_params, $params);
-        return $updated_individual;
+        return $updated_individual->responseXML();
     }
 
     public function savedSearch($id)
     {
         $search_params = array(
-        "id" => intval($id)
+            "id" => intval($id)
         );
 
         $search_results = Ccb::$api->get("execute_search", $search_params);
-        return $search_results->responseXML()->response->individuals->individual;
+        return $search_results->responseXML()->response->individuals;
     }
 }
