@@ -27,11 +27,11 @@ class Events
      *
      * @return ...
      */
-    public function attendanceProfile($id, DateTime $occurrence)
+    public function attendanceProfile($id, $occurrence)
     {
         return Ccb::$api->get('attendance_profile', [
             'id' => $id,
-            'occurrence' => $occurrence, // TODO(evan): Convert to correctly-formatted string
+            'occurrence' => Ccb::format_date($occurrence), // TODO(evan): Convert to correctly-formatted string
         ]);
     }
 
@@ -45,11 +45,11 @@ class Events
      *
      * @return ... The profile of the event that was created.
      */
-    public function createEvent($group_id, DateTime $start_date, DateTime $end_date, $name, array $options = [])
+    public function createEvent($group_id, $start_date, $end_date, $name, array $options = [])
     {
         $options['group_id'] = $group_id;
-        $options['start_date'] = $start_date; // TODO(evan): Convert date to string
-        $options['end_date'] = $end_date; // TODO(evan): Convert date to string
+        $options['start_date'] = Ccb::format_date($start_date);
+        $options['end_date'] = Ccb::format_date($end_date);
         $options['name'] = $name;
 
         return Ccb::$api->get('create_event', $options, 'POST');
@@ -70,7 +70,7 @@ class Events
 
         return $event_profile->responseXML()->response->events->event;
     }
-
+ 
     /**
      * Get all events created or modified since the given date.
      *
@@ -80,10 +80,12 @@ class Events
      *
      * @return ...
      */
-    public function eventProfiles(DateTime $modified_since = null)
+    public function eventProfiles($modified_since = null)
     {
-        return Ccb::$api->get("event_profiles", [
-            'modified_since' => $modified_since,
+        $events = Ccb::$api->get("event_profiles", [
+            'modified_since' => Ccb::format_date($modified_since),
         ]);
+
+        return $events->responseXML()->response->events->event;
     }
 }

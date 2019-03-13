@@ -11,7 +11,7 @@ class Calendar
    *
    * @return array of public calendar list items
    */
-    public function publicCalendarListing($date_start = "2010-01-01", $date_end = null)
+    public function publicCalendarListing($date_start = "2012-01-01", $date_end = null)
     {
 
         $args["date_start"] = Ccb::format_date($date_start);
