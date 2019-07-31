@@ -62,10 +62,11 @@ class Events
      *
      * @return ...
      */
-    public function eventProfile($id)
+    public function eventProfile($id, $image=false)
     {
         $event_profile =  Ccb::$api->get('event_profile', [
             'id' => $id,
+            'include_image_link' => $image
         ]);
 
         return $event_profile->responseXML()->response->events->event;

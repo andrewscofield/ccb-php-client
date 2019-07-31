@@ -19,7 +19,7 @@ class Response
                     $this->responseXML = $xml;
                     $this->responseArray = json_decode(json_encode($xml), 1);
                     // $this->responseArray = $this->xml2array($xml);
-                    // $this->responseObject = $this->xml2obj($xml);
+                    $this->responseObject = $this->xml2obj($xml);
                     $this->responseError = '';
                 if (isset($this->responseArray["response"])) {
                     if (isset($this->responseArray["response"]["error"])) {
@@ -51,12 +51,12 @@ class Response
 
     public function responseArray()
     {
-        return $this->response;
+        return $this->responseArray;
     }
 
     public function responseObject()
     {
-        return $this->response;
+        return $this->responseObject;
     }
 
     protected function xml2obj($xml, $force = false)
