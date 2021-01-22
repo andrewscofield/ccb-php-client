@@ -81,11 +81,14 @@ class Events
      *
      * @return ...
      */
-    public function eventProfiles($modified_since = null, $include_image = false)
+    public function eventProfiles($modified_since = null, $include_image = false, $count='100')
     {
         $events = Ccb::$api->get("event_profiles", [
             'modified_since' => Ccb::format_date($modified_since),
-            'include_image_link' => $include_image
+            'include_image_link' => $include_image,
+            'per_page' => $count,
+            'page' => 1
+
         ]);
 
         return $events->responseXML()->response->events->event;
